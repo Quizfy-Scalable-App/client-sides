@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="bg-icha flex " >
-      <div className="flex w-1/2 h-16 align-middle" style={{fontFamily: 'Inter'}}>
+    <header className="bg-icha flex" >
+      <div className="flex w-1/2 h-16 align-middle">
         <div className="w-full ml-3 flex justify-between items-center px-6">
           <Link
             href="/"
@@ -23,7 +23,6 @@ const Navbar = () => {
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            style={{ fontFamily: "Inter" }}
           >
             <Link href={"/Activity"}>Activity</Link>
           </button>
@@ -46,7 +45,6 @@ const Navbar = () => {
           <button
             type="button"
             className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
-            style={{ fontFamily: "Inter" }}
           >
             Create Quiz
           </button>

@@ -1,4 +1,5 @@
-import ActivityList from "../_components/Activity/ActivityList";
+import ActivityList from "./_components/ActivityList";
+
 
 export default function Activity() {
   return (
