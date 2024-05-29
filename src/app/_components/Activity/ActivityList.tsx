@@ -26,10 +26,7 @@ function ActivityList() {
   ];
   return (
     <div className="flex flex-col justify-between gap-5 ml-56 my-6">
-      <div className="">
-        <h2 className="font-semibold text-[24px]">Newest Activity</h2>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-3 gap-3 ">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 ">
         {activitylist.map((item, i)=> (
             <ActivityItem activity={item}/>
         ))}

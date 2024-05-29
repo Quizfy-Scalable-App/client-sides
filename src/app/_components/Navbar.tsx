@@ -2,7 +2,6 @@
 import React from "react";
 import Link from "next/link";
 
-
 const Navbar = () => {
   return (
     <header className="bg-icha flex">
@@ -27,7 +26,7 @@ const Navbar = () => {
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
             style={{ fontFamily: "Inter" }}
           >
-            <Link href={'/Activity'}>Activity</Link>
+            <Link href={"/Activity"}>Activity</Link>
           </button>
           <button
             type="button"
@@ -50,11 +49,11 @@ const Navbar = () => {
       <div className="w-1/2 ">
         <div className="h-full flex justify-end items-center mr-3 px-6">
           <button
-              type="button"
-              className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
-              style={{ fontFamily: "Inter" }}
-              >
-              Create Quiz
+            type="button"
+            className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
+            style={{ fontFamily: "Inter" }}
+          >
+            Create Quiz
           </button>
         </div>
       </div>
