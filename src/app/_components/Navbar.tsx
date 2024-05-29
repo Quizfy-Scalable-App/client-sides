@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
   return (
     <header className="bg-icha flex" >
       <div className="flex w-1/2 h-16 align-middle">
@@ -46,7 +49,7 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
           >
-            Create Quiz
+            {pathname.includes("create/") ? "Save Quiz" : "Create Quiz"}
           </button>
         </div>
       </div>
