@@ -2,22 +2,20 @@
 import React from "react";
 import Link from "next/link";
 
-
 const Navbar = () => {
   return (
-    <header className="bg-icha flex">
-      <div className="flex w-1/2 h-16 align-middle">
+    <header className="bg-icha flex " >
+      <div className="flex w-1/2 h-16 align-middle" style={{fontFamily: 'Inter'}}>
         <div className="w-full ml-3 flex justify-between items-center px-6">
           <Link
             href="/"
-            className="font-['Inter'] text-3xl font-bold text-icha2"
+            className=" text-3xl font-bold text-icha2"
           >
             Quizify
           </Link>
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            style={{ fontFamily: "Inter" }}
             data-dropdown-toggle="dropdown"
           >
             Home
@@ -26,23 +24,18 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
             style={{ fontFamily: "Inter" }}
-            data-dropdown-toggle="dropdown"
           >
-            Activity
+            <Link href={"/Activity"}>Activity</Link>
           </button>
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            style={{ fontFamily: "Inter" }}
-            data-dropdown-toggle="dropdown"
           >
             My Quiz
           </button>
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            style={{ fontFamily: "Inter" }}
-            data-dropdown-toggle="dropdown"
           >
             Profile
           </button>
@@ -51,11 +44,11 @@ const Navbar = () => {
       <div className="w-1/2 ">
         <div className="h-full flex justify-end items-center mr-3 px-6">
           <button
-              type="button"
-              className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
-              style={{ fontFamily: "Inter" }}
-              >
-              Create Quiz
+            type="button"
+            className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
+            style={{ fontFamily: "Inter" }}
+          >
+            Create Quiz
           </button>
         </div>
       </div>

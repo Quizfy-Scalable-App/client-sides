@@ -7,21 +7,9 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
-    colors:{
-      icha: '#7CA7DA',
-      icha2: '#314C76',
-      'white': '#ffffff',
-      'black': '#1c1c1c',
-      'beige': '#f8f2eb',
-      'light-gray': '#e7e7e7',
-      'slight-gray': '#666666',
-      'gray': '#d7d7d7',
-      'deep-gray': '#bbbbbb',
-      'dark-gray': '#898989'
-    },
     container: {
       center: true,
       padding: "2rem",
@@ -30,7 +18,20 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ['"Inter"', 'sans-serif'],
+      },
       colors: {
+        icha: '#7CA7DA',
+        icha2: '#314C76',
+        'white': '#ffffff',
+        'black': '#1c1c1c',
+        'beige': '#f8f2eb',
+        'light-gray': '#e7e7e7',
+        'slight-gray': '#666666',
+        'gray': '#d7d7d7',
+        'deep-gray': '#bbbbbb',
+        'dark-gray': '#898989',
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
