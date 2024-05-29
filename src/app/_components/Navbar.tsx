@@ -26,9 +26,8 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
             style={{ fontFamily: "Inter" }}
-            data-dropdown-toggle="dropdown"
           >
-            Activity
+            <Link href={'/Activity'}>Activity</Link>
           </button>
           <button
             type="button"

@@ -6,7 +6,6 @@ import ActivityList from "./_components/Activity/ActivityList";
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <Inputbox/>
 
       <ActivityList />

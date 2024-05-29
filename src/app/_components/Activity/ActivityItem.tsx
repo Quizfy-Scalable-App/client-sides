@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Activity } from "@/types/Activity";
+import Link from "next/link";
 
 interface ActivityProps {
   activity: Activity;
@@ -13,7 +14,7 @@ function ActivityItem({ activity }: ActivityProps) {
         gap-1 hover:scale-105 hover:shadow-md cursor-pointer relative"
     >
       <div>
-        <button type="button" className="">
+        <Link href="/Activity" className="">
           <Image
             className="w-"
             src="/folder1.svg"
@@ -21,11 +22,11 @@ function ActivityItem({ activity }: ActivityProps) {
             width={216}
             height={131}
           />
-        </button>
+        </Link>
       </div>
-      <div className="pt-0.5 pl-5 flex flex-col justify-between gap-3 text-[16px]">
+      <div className="pt-2 pb-0.5 pl-5 flex flex-col justify-between gap-3 text-[16px]">
         <h2>{activity.name}</h2>
-        <div className="bg-gray pl-4 mr-5 rounded-lg">
+        <div className="bg-gray pl-4 mr-6 rounded-lg">
           <h2 className="text-[12px] font-light">Score : {activity.score}</h2>
         </div>
       </div>
