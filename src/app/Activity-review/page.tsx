@@ -34,6 +34,75 @@ const rank = [
   },
 ];
 
+const soal = [
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    answers: [
+      {
+        id: 1,
+        name: "A. True",
+      },
+      {
+        id: 2,
+        name: "B. False",
+      },
+      {
+        id: 3,
+        name: "C. True",
+      },
+      {
+        id: 4,
+        name: "D. False",
+      },
+    ],
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    answers: [
+      {
+        id: 1,
+        name: "A. True",
+      },
+      {
+        id: 2,
+        name: "B. False",
+      },
+      {
+        id: 3,
+        name: "C. True",
+      },
+      {
+        id: 4,
+        name: "D. False",
+      },
+    ],
+  },
+  {
+    question:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    answers: [
+      {
+        id: 1,
+        name: "A. True",
+      },
+      {
+        id: 2,
+        name: "B. False",
+      },
+      {
+        id: 3,
+        name: "C. True",
+      },
+      {
+        id: 4,
+        name: "D. False",
+      },
+    ],
+  },
+];
+
 const rankuser = rank.pop();
 
 export default function ActivityReview() {
@@ -84,8 +153,17 @@ export default function ActivityReview() {
         </div>
       </div>
       <div className="w-[886px] flex mb-10">
-        <div>
-          <QuestionBox />
+        <div className="">
+          {soal.map((soal, i) => (
+            <QuestionBox
+              key={i}
+              question={soal.question}
+              answers={soal.answers}
+              isDisabled={true}
+              index={i}
+              className="mb-4"
+            />
+          ))}
         </div>
       </div>
     </div>

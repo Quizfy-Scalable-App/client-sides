@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      fontFamily: {
+        inter: ['"Inter"', 'sans-serif'],
+      },
       colors: {
         icha: '#7CA7DA',
         icha2: '#314C76',

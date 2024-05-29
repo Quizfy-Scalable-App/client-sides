@@ -2,42 +2,32 @@
 
 import { Checkbox } from "@/components/ui/checkbox";
 
-const items = [
-  {
-    id: 1,
-    name: "Option 1",
-  },
-  {
-    id: 2,
-    name: "Option 2",
-  },
-  {
-    id: 3,
-    name: "Option 3",
-  },
-  {
-    id: 4,
-    name: "Option 4",
-  },
-];
-
-export function QuestionBox() {
+interface QuestionBoxProps {
+    isDisabled: boolean;
+    question: string;
+    answers: any[];
+    index: number;
+    }
+export function QuestionBox({isDisabled, question, answers, index}: QuestionBoxProps) {
   return (
-    <div className="flex flex-col px-[26px] py-[14px] border rounded-lg">
+    <div className="flex flex-col px-[26px] py-[14px] border rounded-lg mb-[22px]">
       <h2 className="w-fit h-fit bg-white px-[6px] flex justify-center border rounded-sm mb-[17px]">
-        1
+        {index + 1}
       </h2>
       <h2 className="mb-[14px]">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. 
+        {question}
       </h2>
       <h2 className="mb-[9px]">Answer choices :</h2>
 
       <div className="flex flex-col justify-between gap-2">
-        {items.map((item) => (
+        {answers.map((answer, i) => (
           <div className="flex items-center space-x-2">
-            <Checkbox key={item.id} />
-            <label className=" text-[16px]">{item.name}</label>
+            {!isDisabled ? (
+            <Checkbox key={i} />
+            ) : (
+            <Checkbox key={i} disabled />
+            )}
+            <label className=" text-[16px]">{answer.name}</label>
           </div>
         ))}
       </div>
