@@ -33,15 +33,15 @@ const SignupPage = () => {
             Sign up for free to access to in any of our products
           </p>
           <form onSubmit={handleCreateAccount} action="">
-            {error && (
-              <p className="text-red-500 text-sm mt-2">{error}</p>
-            )}
             <div className="mb-4">
+              {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
               <label className="block text-slight-gray mt-6 text-base">
                 Username
               </label>
               <input
-                onChange={(e) => {setName(e.target.value)}}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
                 value={name}
                 type="text"
                 className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-icha2"
@@ -52,7 +52,9 @@ const SignupPage = () => {
                 Email address
               </label>
               <input
-                onChange={(e) => {setEmail(e.target.value)}}
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
                 value={email}
                 type="email"
                 className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-icha2"
@@ -63,7 +65,9 @@ const SignupPage = () => {
                 Password
               </label>
               <input
-                onChange={(e) => {setPassword(e.target.value)}}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
                 value={password}
                 type="password"
                 className="w-full px-3 py-2 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-icha2"
@@ -73,6 +77,7 @@ const SignupPage = () => {
               </p>
             </div>
             <button
+              disabled={loading ? true : false}
               type="submit"
               className="w-[250px] h-[64px] rounded-full text-2xl font-medium px-3 py-2 text-white bg-icha2 mt-2"
             >

@@ -15,7 +15,6 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
   useEffect(() => {
     const fetchUser = async () => {
       const token = localStorage.getItem("authToken");
-
       if (!token) {
         setUser(null);
         return;
@@ -25,20 +24,17 @@ const UserProvider = ({ children }: { children: React.ReactNode }) => {
         const response = await fetch(
           "https://quizify-auth-service.vercel.app/api/auth/user",
           {
-            method: "GET",
             headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}`
+              Authorization: `Bearer ${token}`
             }
           }
         );
-
         if (!response.ok) {
           throw new Error("Failed to fetch user data");
         }
 
         const data = await response.json();
-        setUser(data.user);
+        setUser(data);
         localStorage.setItem("signedin", "true");
         console.log("signedin");
       } catch (error:any) {
