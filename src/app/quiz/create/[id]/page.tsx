@@ -101,7 +101,7 @@ export default function CreateQuizQuestions({
             <PlusIcon size={16} />
             <p>Add question</p>
           </DialogTrigger>
-          <CreateQuestionDialog />
+          <CreateQuestionDialog quizId={params.id as string} />
         </Dialog>
       </div>
       <div className="py-6">
@@ -109,9 +109,10 @@ export default function CreateQuizQuestions({
           <QuestionBox
             key={index}
             question={soal.text}
-            answers={soal.choices.map((choice: any) => choice.text)}
+            answers={soal.choices}
             isDisabled={false}
             index={index}
+            isCreate={true}
           />
         ))}
       </div>
