@@ -1,6 +1,8 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const useLogin = () => {
+    const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -27,8 +29,8 @@ export const useLogin = () => {
 
       // Save the token to localStorage
       localStorage.setItem("authToken", token);
-
       setError(null);
+      router.push("/");
     } catch (error: any) {
       setError(error.message);
     } finally {
