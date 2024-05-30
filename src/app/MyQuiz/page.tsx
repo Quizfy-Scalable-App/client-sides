@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -8,6 +9,7 @@ const Container = styled.div`
 
 const MainContent = styled.main`
   padding: 4rem;
+  width: 100%;
 `;
 
 const QuizList = styled.div`
@@ -27,13 +29,6 @@ const QuizCard = styled.div`
 const QuizInfo = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const QuizName = styled.h3`
-  margin: 0.2;
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
 `;
 
 const QuizImageBox = styled.div`
@@ -88,11 +83,11 @@ const Home: React.FC = () => {
                                             <img src="https://via.placeholder.com/150" alt="quiz" />
                                         </QuizImageBox>
                                     <QuizInfo>
-                                        <QuizName>Quiz Name</QuizName>
+                                        <div style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "1rem" }}>Quiz Name</div>
                                         <p>x questions</p>
                                         <p>ended</p>
                                     </QuizInfo>
-                                    <SettingsButton>Settings</SettingsButton>
+                                        <SettingsButton>Settings</SettingsButton>
                                 </QuizCard>
                             ))}
                         </QuizList>
