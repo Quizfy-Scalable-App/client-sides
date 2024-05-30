@@ -1,9 +1,8 @@
-
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 export const useSignUp = () => {
-const router = useRouter();
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -32,7 +31,7 @@ const router = useRouter();
       localStorage.setItem("authToken", token);
 
       setError(null);
-      router.push("/")
+      router.push("/");
     } catch (error: any) {
       setError(error.message);
     } finally {
