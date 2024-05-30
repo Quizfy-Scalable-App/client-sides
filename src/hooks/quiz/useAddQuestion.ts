@@ -1,37 +1,40 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useCurrentUser } from "../auth/useCurrentUser";
 
-export const useSignUp = () => {
+export const useAddQuestion = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const signUp = async (name: string, email: string, password: string) => {
+  const addQuestion = async (
+    quizId: string,
+    text: string,
+    choices: { text: string; isCorrect: boolean }[]
+  ) => {
     setLoading(true);
     try {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        throw new Error("You are not logged in");
+      }
+
       const response = await fetch(
-        "https://quizify-auth-service.vercel.app/api/auth/register",
+        `https://quizify-quiz-service.vercel.app/api/quiz/${quizId}/question`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({ name, email, password }),
+          body: JSON.stringify({ text, choices }),
         }
       );
       if (!response.ok) {
         const errorData = await response.json();
-        throw new Error(errorData.message || "Sign up failed");
+        throw new Error(errorData.message || "Failed to add Question");
       }
-
-      const data = await response.json();
-      const token = data.token;
-
-      // Save the token to localStorage
-      localStorage.setItem("authToken", token);
-
       setError(null);
-      router.push("/");
     } catch (error: any) {
       setError(error.message);
     } finally {
@@ -39,5 +42,5 @@ export const useSignUp = () => {
     }
   };
 
-  return { error, loading, signUp };
+  return { error, loading, addQuestion };
 };

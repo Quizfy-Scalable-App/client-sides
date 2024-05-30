@@ -1,6 +1,9 @@
 "use client";
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
+import { useCreateQuiz } from "@/hooks/quiz/useCreateQuiz";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -65,58 +68,84 @@ const CreateQuizButton = styled.button`
 `;
 
 const CreateQuizPage: React.FC = () => {
-  const [quizName, setQuizName] = useState('');
-  const [startDate, setStartDate] = useState('');
-  const [startTime, setStartTime] = useState('');
-  const [endDate, setEndDate] = useState('');
-  const [endTime, setEndTime] = useState('');
+  const router = useRouter();
+  const { createQuiz, loading, error } = useCreateQuiz();
+  const [quizName, setQuizName] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [endTime, setEndTime] = useState("");
+
+  // Fungsi untuk menggabungkan date dan time dengan offset WIB
+  const getFullDateTimeWIB = (date: string, time: string) => {
+    return `${date}T${time}:00+07:00`;
+  };
+
+  const handleCreateQuiz = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    createQuiz(
+      quizName,
+      getFullDateTimeWIB(startDate, startTime),
+      getFullDateTimeWIB(endDate, endTime)
+    );
+  };
 
   return (
     <Container>
       <MainContent>
         <SettingsContainer>
-        <h1 className = "font-bold text-[24px]">Quiz Setting</h1>
-          <FormGroup>
-            <Label htmlFor="quiz-name">Name</Label>
-            <Input
-              id="quiz-name"
-              type="text"
-              value={quizName}
-              onChange={(e) => setQuizName(e.target.value)}
-              placeholder="Insert quiz name"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Starts</Label>
-            <DateTimeGroup>
-              <DateTimePicker
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
+          <h1 className="font-bold text-[24px]">Quiz Setting</h1>
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          <form onSubmit={handleCreateQuiz}>
+            <FormGroup>
+              <Label htmlFor="quiz-name">Name</Label>
+              <Input
+                required
+                id="quiz-name"
+                type="text"
+                value={quizName}
+                onChange={(e) => setQuizName(e.target.value)}
+                placeholder="Insert quiz name"
               />
-              <DateTimePicker
-                type="time"
-                value={startTime}
-                onChange={(e) => setStartTime(e.target.value)}
-              />
-            </DateTimeGroup>
-          </FormGroup>
-          <FormGroup>
-            <Label>Ends</Label>
-            <DateTimeGroup>
-              <DateTimePicker
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-              />
-              <DateTimePicker
-                type="time"
-                value={endTime}
-                onChange={(e) => setEndTime(e.target.value)}
-              />
-            </DateTimeGroup>
-          </FormGroup>
-          <CreateQuizButton>Create Quiz</CreateQuizButton>
+            </FormGroup>
+            <FormGroup>
+              <Label>Starts</Label>
+              <DateTimeGroup>
+                <DateTimePicker
+                  required
+                  type="date"
+                  value={startDate}
+                  onChange={(e) => setStartDate(e.target.value)}
+                />
+                <DateTimePicker
+                  required
+                  type="time"
+                  value={startTime}
+                  onChange={(e) => setStartTime(e.target.value)}
+                />
+              </DateTimeGroup>
+            </FormGroup>
+            <FormGroup>
+              <Label>Ends</Label>
+              <DateTimeGroup>
+                <DateTimePicker
+                  required
+                  type="date"
+                  value={endDate}
+                  onChange={(e) => setEndDate(e.target.value)}
+                />
+                <DateTimePicker
+                  required
+                  type="time"
+                  value={endTime}
+                  onChange={(e) => setEndTime(e.target.value)}
+                />
+              </DateTimeGroup>
+            </FormGroup>
+            <CreateQuizButton type="submit" disabled={loading ? true : false}>
+              {loading ? "Loading..." : "Create Quiz"}
+            </CreateQuizButton>
+          </form>
         </SettingsContainer>
       </MainContent>
     </Container>

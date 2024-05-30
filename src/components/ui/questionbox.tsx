@@ -11,10 +11,11 @@ interface QuestionBoxProps {
   question: string;
   answers: any[];
   index: number;
+  isCreate?: boolean;
 }
 
-export function QuestionBox({ isDisabled, question, answers, index }: QuestionBoxProps) {
-  const [answerChoice, setAnswerChoice] = useState("");
+export function QuestionBox({ isDisabled, question, answers, index, isCreate=false }: QuestionBoxProps) {
+  const [answerChoice, setAnswerChoice] = useState(isCreate ? answers.find(c => c.isCorrect === true)._id : "");
 
   return (
     <div className="flex flex-col px-[26px] py-[14px] border rounded-lg mb-[22px]">
@@ -32,8 +33,8 @@ export function QuestionBox({ isDisabled, question, answers, index }: QuestionBo
         {
           answers.map((answer, i) => (
             <div className="flex gap-4">
-              <RadioGroupItem key={i} value={answer.id} />
-              <Label>{answer.name}</Label>
+              <RadioGroupItem key={i} value={answer._id} disabled={isCreate} />
+              <Label>{answer.text}</Label>
             </div>
           ))
         }
