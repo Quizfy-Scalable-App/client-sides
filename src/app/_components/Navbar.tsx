@@ -39,7 +39,7 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
           >
-            <Link href={"/Profile"}>Profile</Link>
+            <Link href={"/profile"}>Profile</Link>
           </button>
         </div>
       </div>
