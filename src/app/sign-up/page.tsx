@@ -40,13 +40,13 @@ const SignupPage = () => {
             </div>
             <button
               type="submit"
-              className="w-[250px] h-[64px] rounded-full text-2xl font-bold px-3 py-2 text-white bg-icha2 mt-2"
+              className="w-[250px] h-[64px] rounded-full text-2xl font-medium px-3 py-2 text-white bg-icha2 mt-2"
             >
               Sign up
             </button>
           </form>
           <p className="text-left mt-1 text-base">
-            Already have an account? <Link href="/login" className="text-icha2">Log in</Link>
+            Already have an account? <Link href="/sign-in" className="text-icha2">Log in</Link>
           </p>
         </div>
       </div>
