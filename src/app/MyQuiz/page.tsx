@@ -21,9 +21,9 @@ const QuizCard = styled.div`
   padding: 1rem;
   border-radius: 20px;
   display: flex;
-  
-  align-items: center;
   margin-bottom: 1rem;
+  justify-content: space-between;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 `;
 
 const QuizInfo = styled.div`
@@ -70,6 +70,13 @@ margin-top: 2rem;
   align-items: center;
 `;
 
+const RightContainer = styled.div`
+  display: flex;
+  padding: 1rem;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
 const Home: React.FC = () => {
   return (
     <Container>
@@ -79,15 +86,23 @@ const Home: React.FC = () => {
                 <QuizList>
                     {Array(5).fill(0).map((_, index) => (
                                 <QuizCard key={index}>
-                                    <QuizImageBox>
+                                  <div className='flex'>
+                                  <QuizImageBox>
                                             <img src="https://via.placeholder.com/150" alt="quiz" />
                                         </QuizImageBox>
                                     <QuizInfo>
+                                      
                                         <div style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "1rem" }}>Quiz Name</div>
                                         <p>x questions</p>
                                         <p>ended</p>
                                     </QuizInfo>
+                                  </div>
+                
+                                    <RightContainer>
+                                    <a href="/MyQuiz/[id]">
                                         <SettingsButton>Settings</SettingsButton>
+                                    </a>
+                                    </RightContainer>
                                 </QuizCard>
                             ))}
                         </QuizList>
