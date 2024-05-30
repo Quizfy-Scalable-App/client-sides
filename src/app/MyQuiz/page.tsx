@@ -92,7 +92,9 @@ const Home: React.FC = () => {
                             ))}
                         </QuizList>
                         <CenteredContainer>
+                        <a href="/CreateSetting">
                         <CreateQuizButton>Create Quiz</CreateQuizButton>
+                        </a>
                     </CenteredContainer>
             </MainContent>
     </Container>

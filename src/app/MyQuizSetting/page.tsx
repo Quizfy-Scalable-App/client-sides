@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
@@ -16,7 +16,7 @@ const InviteSection = styled.div`
   width: 800px;
   height: 200px;
   padding-top: 2rem;
-  padding-left: 4rem;
+  padding-left: 3.5rem;
   border-radius: 25px;
   display: flex;
   margin-bottom: 5rem;
@@ -27,21 +27,15 @@ const InviteDetails = styled.div`
   flex-direction: column;
 `;
 
-const InviteLink = styled.input`
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 500px;
-  height: 40px;
-  margin-right: 1rem;
+const FormGroup = styled.div`
+  margin-bottom: 1rem;
 `;
 
-const QuizCode = styled.input`
-  padding: 0.5rem;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  width: 150px;
-  height: 40px;
+const SpacedFormGroup = styled.div`
+  margin-right: 1.5rem;
+`;
+const SpacedFormGroupText = styled.div`
+  margin-right: 18rem;
 `;
 
 const RankTable = styled.table`
@@ -69,7 +63,7 @@ const TableCell = styled.td`
 `;
 
 const CenteredContainer = styled.div`
-margin-top: 2rem;
+  margin-top: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,29 +71,59 @@ margin-top: 2rem;
 
 const FlexContainer = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-right: 4.7rem;
+  padding-right: 2rem;
   margin-bottom: 0.2rem;
 `;
 
+const Input = styled.input`
+  width: 330px;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+`;
+
 const Home: React.FC = () => {
+  const [quizLink, setQuizLink] = useState('');
+  const [quizCode, setQuizCode] = useState('');
+
   return (
     <Container>
       <MainContent>
           <h1 className = "font-bold text-[24px]">My Quiz</h1>
-          <div className="border-t-2 border-2 border-neutral-950 flex-grow mt-4"></div>
+          <div className="border-t-2 border-2 border-neutral-950 flex-grow mt-4 border-b-4"></div>
           <CenteredContainer>
           <InviteSection>
             <InviteDetails>
             <div style={{ fontSize: "1.75rem", fontWeight: "700", marginBottom: "1rem" }}>Invite Participant</div>
             <FlexContainer>
+              <SpacedFormGroupText>
               <p>Quiz Link</p>
+              </SpacedFormGroupText>
               <p>Quiz Code</p>
             </FlexContainer>
-              <div>
-                <InviteLink value="joinquizify.com" readOnly />
-                <QuizCode value="XXX XXX" readOnly />
-              </div>
+            <FlexContainer>
+            <FormGroup>
+              <SpacedFormGroup>
+                <Input
+                  id="quiz-link"
+                  type="text"
+                  value={quizLink}
+                  onChange={(e) => setQuizLink(e.target.value)}
+                  placeholder="Insert quiz link"
+                />
+              </SpacedFormGroup>
+          </FormGroup>
+          <FormGroup>
+            <Input
+              id="quiz-code"
+              type="text"
+              value={quizCode}
+              onChange={(e) => setQuizCode(e.target.value)}
+              placeholder="XXX-XXX"
+            />
+          </FormGroup>
+          </FlexContainer>
             </InviteDetails>
           </InviteSection>
           </CenteredContainer>
