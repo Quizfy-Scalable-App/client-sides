@@ -50,7 +50,7 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
           >
-            {pathname.includes("create/") ? "Save Quiz" : "Create Quiz"}
+            <Link href={"/CreateSetting"}>Create Quiz</Link>
           </button>
         </div>
       </div>
