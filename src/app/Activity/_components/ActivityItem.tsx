@@ -14,7 +14,7 @@ function ActivityItem({ activity }: ActivityProps) {
         gap-1 hover:scale-105 hover:shadow-md cursor-pointer relative"
     >
       <div>
-        <Link href="/Activity-review" className="">
+        <Link href="Activity/1" className="">
           <Image
             className="w-"
             src="/folder1.svg"

@@ -1,6 +1,7 @@
 import ActivityList from "./_components/ActivityList";
 
 
+
 export default function Activity() {
   return (
     <div className="flex flex-col">

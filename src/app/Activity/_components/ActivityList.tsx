@@ -28,12 +28,12 @@ function ActivityList() {
     <div className="flex flex-col justify-between gap-5 ml-56 my-6">
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 ">
         {activitylist.map((item, i)=> (
-            <ActivityItem activity={item}/>
+            <ActivityItem key={i} activity={item}/>
         ))}
       </div>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-3 gap-2 ">
         {activitylist.map((item, i)=> (
-            <ActivityItem activity={item}/>
+            <ActivityItem key={i} activity={item}/>
         ))}
       </div>
     </div>
