@@ -21,7 +21,8 @@ const Navbar = () => {
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
             data-dropdown-toggle="dropdown"
           >
-            Home
+
+            <Link href={"/"}>Home</Link>
           </button>
           <button
             type="button"
@@ -33,7 +34,7 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
           >
-            My Quiz
+            <Link href={"/MyQuiz"}>My Quiz</Link>
           </button>
           <button
             type="button"
