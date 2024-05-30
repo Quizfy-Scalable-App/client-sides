@@ -1,5 +1,5 @@
 import { QuestionBox } from "@/components/ui/questionbox";
-import Navbar from "../_components/Navbar";
+import Navbar from "../../_components/Navbar";
 import {
   Table,
   TableBody,

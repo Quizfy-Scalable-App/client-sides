@@ -28,13 +28,13 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
           >
-            <Link href={"/Activity"}>Activity</Link>
+            <Link href={"/activity"}>Activity</Link>
           </button>
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
           >
-            <Link href={"/MyQuiz"}>My Quiz</Link>
+            <Link href={"/myquiz"}>My Quiz</Link>
           </button>
           <button
             type="button"
@@ -50,7 +50,7 @@ const Navbar = () => {
             type="button"
             className="inline-flex px-5 py-2 text-[16px] text-sm text-white bg-black rounded-md"
           >
-            <Link href={"/CreateSetting"}>Create Quiz</Link>
+            <Link href={"/quiz/create"}>Create Quiz</Link>
           </button>
         </div>
       </div>
