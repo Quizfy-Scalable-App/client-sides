@@ -7,75 +7,6 @@ import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import { QuestionBox } from "@/components/ui/questionbox";
 import { useGetQuizQuestions } from "@/hooks/quiz/useGetQuizQuestions";
 
-const soal = [
-  {
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    answers: [
-      {
-        id: 1,
-        name: "A. True",
-      },
-      {
-        id: 2,
-        name: "B. False",
-      },
-      {
-        id: 3,
-        name: "C. True",
-      },
-      {
-        id: 4,
-        name: "D. False",
-      },
-    ],
-  },
-  {
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    answers: [
-      {
-        id: 1,
-        name: "A. True",
-      },
-      {
-        id: 2,
-        name: "B. False",
-      },
-      {
-        id: 3,
-        name: "C. True",
-      },
-      {
-        id: 4,
-        name: "D. False",
-      },
-    ],
-  },
-  {
-    question:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    answers: [
-      {
-        id: 1,
-        name: "A. True",
-      },
-      {
-        id: 2,
-        name: "B. False",
-      },
-      {
-        id: 3,
-        name: "C. True",
-      },
-      {
-        id: 4,
-        name: "D. False",
-      },
-    ],
-  },
-];
-
 export default function CreateQuizQuestions({
   params,
 }: {
@@ -110,7 +41,6 @@ export default function CreateQuizQuestions({
             key={index}
             question={soal.text}
             answers={soal.choices}
-            isDisabled={false}
             index={index}
             isCreate={true}
           />

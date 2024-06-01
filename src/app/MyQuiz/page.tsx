@@ -2,6 +2,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useGetUserQuizzes } from '@/hooks/quiz/useGetUserQuizzes';
+import { useCurrentUser } from '@/hooks/auth/useCurrentUser';
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -77,7 +79,9 @@ const RightContainer = styled.div`
   align-items: center;
 `;
 
-const Home: React.FC = () => {
+const MyQuizPage: React.FC = () => {
+  const { quizzes, error, loading } = useGetUserQuizzes();
+  console.log(quizzes);
   return (
     <Container>
       <MainContent>
@@ -116,4 +120,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default MyQuizPage;
