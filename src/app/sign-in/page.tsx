@@ -2,8 +2,12 @@
 import React, { use } from "react";
 import Link from "next/link";
 import { useLogin } from "@/hooks/auth/useLogin";
+import { useRouter } from "next/navigation";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 
 const SigninPage = () => {
+  const router = useRouter();
+  // const { user } = useCurrentUser();
   const { error, loading, login } = useLogin();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -11,6 +15,9 @@ const SigninPage = () => {
     e.preventDefault();
     login(email, password);
   };
+  // if (user) {
+  //   router.push("/");
+  // }
   return (
     <div className="flex flex-col min-h-screen bg-white">
       <div className="flex flex-col lg:flex-row justify-between items-center mx-auto max-w-7xl px-6 py-12">

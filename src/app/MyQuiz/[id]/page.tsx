@@ -1,6 +1,8 @@
-"use client"
-import React, { useState } from 'react';
-import styled from 'styled-components';
+"use client";
+import { useGetQuizQuestions } from "@/hooks/quiz/useGetQuizQuestions";
+import { useGetRank } from "@/hooks/scoring/useGetQuizRank";
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -12,7 +14,7 @@ const MainContent = styled.main`
 `;
 
 const InviteSection = styled.div`
-  background-color: #B4CBEE;
+  background-color: #b4cbee;
   width: 800px;
   height: 200px;
   padding-top: 2rem;
@@ -83,80 +85,91 @@ const Input = styled.input`
   text-align: center;
 `;
 
-const Home: React.FC = () => {
-  const [quizLink, setQuizLink] = useState('');
-  const [quizCode, setQuizCode] = useState('');
+const MyQuizPage = ({ params }: { params: { id: string } }) => {
+  const { quiz, error, loading } = useGetQuizQuestions(params.id);
+  const {
+    ranks,
+    error: errorRank,
+    loading: loadingRank,
+  } = useGetRank(params.id);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <Container>
       <MainContent>
-          <h1 className = "font-bold text-[24px]">My Quiz</h1>
-          <div className="border-t-2 border-2 border-neutral-950 flex-grow mt-4 border-b-4"></div>
-          <CenteredContainer>
+        <h1 className="font-bold text-[24px]">{quiz?.title}</h1>
+        <div className="border-t-2 border-2 border-neutral-950 flex-grow mt-4 border-b-4"></div>
+        <CenteredContainer>
           <InviteSection>
             <InviteDetails>
-            <div style={{ fontSize: "1.75rem", fontWeight: "700", marginBottom: "1rem" }}>Invite Participant</div>
-            <FlexContainer>
-              <SpacedFormGroupText>
-              <p>Quiz Link</p>
-              </SpacedFormGroupText>
-              <p>Quiz Code</p>
-            </FlexContainer>
-            <FlexContainer>
-            <FormGroup>
-              <SpacedFormGroup>
-                <Input
-                  id="quiz-link"
-                  type="text"
-                  value={quizLink}
-                  onChange={(e) => setQuizLink(e.target.value)}
-                  placeholder="Insert quiz link"
-                />
-              </SpacedFormGroup>
-          </FormGroup>
-          <FormGroup>
-            <Input
-              id="quiz-code"
-              type="text"
-              value={quizCode}
-              onChange={(e) => setQuizCode(e.target.value)}
-              placeholder="XXX-XXX"
-            />
-          </FormGroup>
-          </FlexContainer>
+              <div
+                style={{
+                  fontSize: "1.75rem",
+                  fontWeight: "700",
+                  marginBottom: "1rem",
+                }}
+              >
+                Invite Participant
+              </div>
+              <FlexContainer>
+                <SpacedFormGroupText>
+                  <p>Quiz Link</p>
+                </SpacedFormGroupText>
+                <p>Quiz Code</p>
+              </FlexContainer>
+              <FlexContainer>
+                <FormGroup>
+                  <SpacedFormGroup>
+                    <Input
+                      id="quiz-link"
+                      type="text"
+                      value={`/quiz/join/${quiz?._id}`}
+                    />
+                  </SpacedFormGroup>
+                </FormGroup>
+                <FormGroup>
+                  <Input id="quiz-code" type="text" value={quiz?.code} />
+                </FormGroup>
+              </FlexContainer>
             </InviteDetails>
           </InviteSection>
-          </CenteredContainer>
-            <div style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem" }}>Rank</div>
-          <RankTable>
-            <thead>
-              <tr>
-                <TableHead>Name</TableHead>
-                <TableHead>Score</TableHead>
-                <TableHead>Rank</TableHead>
-              </tr>
-            </thead>
-            <tbody>
-              <TableRow>
-                <TableCell>John Doe</TableCell>
-                <TableCell>90</TableCell>
-                <TableCell>1</TableCell>
+        </CenteredContainer>
+        <div
+          style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem" }}
+        >
+          Rank
+        </div>
+        <RankTable>
+          <thead>
+            <tr>
+              <TableHead>Name</TableHead>
+              <TableHead>Score</TableHead>
+              <TableHead>Rank</TableHead>
+            </tr>
+          </thead>
+          <tbody>
+            {ranks?.map((rank: any, index: number) => (
+              <TableRow key={index}>
+                <TableCell>{rank.name}</TableCell>
+                <TableCell>{rank.score |0}</TableCell>
+                <TableCell>{index+1}</TableCell>
               </TableRow>
+            ))}
+            {ranks?.length === 0 && (
               <TableRow>
-                <TableCell>Fred</TableCell>
-                <TableCell>85</TableCell>
-                <TableCell>2</TableCell>
+                <TableCell colSpan={3} className="text-center">No Participant</TableCell>
               </TableRow>
-              <TableRow>
-                <TableCell>Lisa</TableCell>
-                <TableCell>70</TableCell>
-                <TableCell>3</TableCell>
-              </TableRow>
-            </tbody>
-          </RankTable>
+            )}
+          </tbody>
+        </RankTable>
       </MainContent>
     </Container>
   );
 };
 
-export default Home;
+export default MyQuizPage;

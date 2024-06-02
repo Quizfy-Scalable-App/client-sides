@@ -1,7 +1,9 @@
-"use client"
-import React from 'react';
-import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+"use client";
+import React from "react";
+import styled from "styled-components";
+import { Link } from "react-router-dom";
+import { useGetUserQuizzes } from "@/hooks/quiz/useGetUserQuizzes";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -32,12 +34,12 @@ const QuizInfo = styled.div`
 `;
 
 const QuizImageBox = styled.div`
-    width: 100px;
-    height: 100px;
-    border-radius: 10px;
-    overflow: hidden;
-    margin-right: 1rem;
-    `; 
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 1rem;
+`;
 
 const SettingsButton = styled.button`
   background-color: #6aafe6;
@@ -48,14 +50,14 @@ const SettingsButton = styled.button`
   cursor: pointer;
   margin-left: auto;
   margin-top: auto;
-  
+
   &:hover {
     background-color: #5a9fd6;
   }
 `;
 
 const CreateQuizButton = styled.button`
-  background-color: #264F8D;
+  background-color: #264f8d;
   color: white;
   border: none;
   padding: 1rem 3rem;
@@ -64,7 +66,7 @@ const CreateQuizButton = styled.button`
 `;
 
 const CenteredContainer = styled.div`
-margin-top: 2rem;
+  margin-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -77,43 +79,61 @@ const RightContainer = styled.div`
   align-items: center;
 `;
 
-const Home: React.FC = () => {
+const MyQuizPage: React.FC = () => {
+  const { quizzes, error, loading } = useGetUserQuizzes();
+  console.log(quizzes);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (error) {
+    return <p>{error}</p>;
+  }
   return (
     <Container>
       <MainContent>
-        <h1 className = "font-bold text-[24px]">My Quiz</h1>
+        <h1 className="font-bold text-[24px]">My Quiz</h1>
         <div className="border-t-2 border-2 border-neutral-950 flex-grow mt-4"></div>
-                <QuizList>
-                    {Array(5).fill(0).map((_, index) => (
-                                <QuizCard key={index}>
-                                  <div className='flex'>
-                                  <QuizImageBox>
-                                            <img src="https://via.placeholder.com/150" alt="quiz" />
-                                        </QuizImageBox>
-                                    <QuizInfo>
-                                      
-                                        <div style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "1rem" }}>Quiz Name</div>
-                                        <p>x questions</p>
-                                        <p>ended</p>
-                                    </QuizInfo>
-                                  </div>
-                
-                                    <RightContainer>
-                                    <a href="/MyQuiz/[id]">
-                                        <SettingsButton>Settings</SettingsButton>
-                                    </a>
-                                    </RightContainer>
-                                </QuizCard>
-                            ))}
-                        </QuizList>
-                        <CenteredContainer>
-                        <a href="/CreateSetting">
-                        <CreateQuizButton>Create Quiz</CreateQuizButton>
-                        </a>
-                    </CenteredContainer>
-            </MainContent>
+        <QuizList>
+          {quizzes.map((quiz, index) => (
+            <QuizCard key={index}>
+              <div className="flex">
+                <QuizImageBox>
+                  <img src="/folder1.svg" alt="quiz"  />
+                </QuizImageBox>
+                <QuizInfo>
+                  <div
+                    style={{
+                      fontSize: "1.5rem",
+                      fontWeight: "700",
+                      marginBottom: "1rem",
+                    }}
+                  >
+                    {quiz.title}
+                  </div>
+                  {/* <p>{quiz.question.length}</p> */}
+                  {/* availibitu time */}
+                  <p>Start Time: {new Date(quiz.startTime).toLocaleString('id-ID')}</p>
+                  <p>End Time: {new Date(quiz.endTime).toLocaleString('id-ID')}</p>
+
+                </QuizInfo>
+              </div>
+
+              <RightContainer>
+                <a href={`/myquiz/${quiz._id}`}>
+                  <SettingsButton>Settings</SettingsButton>
+                </a>
+              </RightContainer>
+            </QuizCard>
+          ))}
+        </QuizList>
+        <CenteredContainer>
+          <a href="/quiz/create">
+            <CreateQuizButton>Create Quiz</CreateQuizButton>
+          </a>
+        </CenteredContainer>
+      </MainContent>
     </Container>
   );
 };
 
-export default Home;
+export default MyQuizPage;
