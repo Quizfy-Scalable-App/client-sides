@@ -7,7 +7,7 @@ import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 
 const SignupPage = () => {
   const router = useRouter();
-  const { user } = useCurrentUser();
+  // const { user } = useCurrentUser();
   const { error, loading, signUp } = useSignUp();
   const [name, setName] = React.useState("");
   const [email, setEmail] = React.useState("");
@@ -16,9 +16,9 @@ const SignupPage = () => {
     e.preventDefault();
     signUp(name, email, password);
   };
-  if (user) {
-    router.push("/");
-  }
+  // if (user) {
+  //   router.push("/");
+  // }
 
   return (
     <div className="flex flex-col min-h-screen bg-white">

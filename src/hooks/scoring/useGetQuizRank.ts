@@ -1,31 +1,32 @@
 "use client";
 import { use, useEffect, useState } from "react";
-import { useCurrentUser } from "../auth/useCurrentUser";
 
-export const useGetUserQuizzes = () => {
-  const [quizzes, setQuizzes] = useState<any[]>([]);
+export const useGetRank = (quizId: string) => {
+  const [ranks, setRanks] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
-    const fetcUserQuizzes = async () => {
+    const fetchRank = async () => {
       setLoading(true);
+      console.log("tetsttt");
+      console.log(quizId);
       try {
-        const token = localStorage.getItem("authToken");
         const response = await fetch(
-          `https://quizify-quiz-service.vercel.app/api/quiz/user/`,
+          `https://quizify-scoring-service.vercel.app/api/score/ranking/${quizId}`,
           {
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
             },
           }
         );
+        console.log(response);
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(errorData.message || "Failed to fetch quizzes");
+          throw new Error(errorData.message || "Failed to fetch rank");
         }
         const data = await response.json();
-        setQuizzes(data);
+        setRanks(data);
         setError(null);
       } catch (error: any) {
         setError(error.message);
@@ -34,8 +35,8 @@ export const useGetUserQuizzes = () => {
       }
     };
 
-    fetcUserQuizzes();
-  }, []);
+    fetchRank();
+  }, [quizId]);
 
-  return { quizzes, error, loading };
+  return { ranks, error, loading };
 };

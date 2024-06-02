@@ -1,18 +1,18 @@
 "use client";
 import { use, useEffect, useState } from "react";
-import { useCurrentUser } from "../auth/useCurrentUser";
 
-export const useGetUserQuizzes = () => {
-  const [quizzes, setQuizzes] = useState<any[]>([]);
+export const useGetUserQuizActivity = () => {
+  const [userQuizActivity, setuserQuizActivity] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
   useEffect(() => {
-    const fetcUserQuizzes = async () => {
+    const fetchUserQuizActivity = async () => {
       setLoading(true);
       try {
         const token = localStorage.getItem("authToken");
         const response = await fetch(
-          `https://quizify-quiz-service.vercel.app/api/quiz/user/`,
+          `https://quizify-scoring-service.vercel.app/api/score/user`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -22,10 +22,10 @@ export const useGetUserQuizzes = () => {
         );
         if (!response.ok) {
           const errorData = await response.json();
-          throw new Error(errorData.message || "Failed to fetch quizzes");
+          throw new Error(errorData.message || "Failed to fetch User Activity");
         }
         const data = await response.json();
-        setQuizzes(data);
+        setuserQuizActivity(data);
         setError(null);
       } catch (error: any) {
         setError(error.message);
@@ -34,8 +34,8 @@ export const useGetUserQuizzes = () => {
       }
     };
 
-    fetcUserQuizzes();
+    fetchUserQuizActivity();
   }, []);
 
-  return { quizzes, error, loading };
+  return { userQuizActivity, error, loading };
 };

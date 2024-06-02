@@ -42,7 +42,7 @@ export default function JoinQuiz({ params }: { params: { id: string } }) {
   return (
     <div className="px-56 flex flex-col">
       <div className="w-full pb-3 pt-8 border-b flex justify-between items-center border-black">
-        <h2 className="text-lg">quiz.title</h2>
+        <h2 className="text-lg">{quiz.title}</h2>
       </div>
       <div className="pt-6">
         {quiz.questions.map((soal: any, index: number) => (
@@ -67,7 +67,7 @@ export default function JoinQuiz({ params }: { params: { id: string } }) {
           onClick={handleSubmit}
           disabled={loadingSubmit}
         >
-          {loading ? <p>Loading...</p> : <p>Submit quiz</p>}
+          {loadingSubmit ? <p>Loading...</p> : <p>Submit quiz</p>}
         </button>
       </div>
     </div>
