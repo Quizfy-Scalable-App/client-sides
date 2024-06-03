@@ -45,7 +45,7 @@ export default function JoinQuiz({ params }: { params: { id: string } }) {
         <h2 className="text-lg">{quiz.title}</h2>
       </div>
       <div className="pt-6">
-        {quiz.questions.map((soal: any, index: number) => (
+        {quiz.questions?.map((soal: any, index: number) => (
           <QuestionBox
             key={index}
             question={soal.text}
