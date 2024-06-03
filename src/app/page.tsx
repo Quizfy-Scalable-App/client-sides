@@ -10,7 +10,7 @@ export default function Home() {
   const { user } = useCurrentUser();
   const router = useRouter();
   console.log(user);
-  if (!user) {
+  if (localStorage.getItem("authToken") === null)  {
     router.push("/sign-in");
   }
     

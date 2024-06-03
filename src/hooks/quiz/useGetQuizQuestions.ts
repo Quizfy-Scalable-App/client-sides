@@ -11,7 +11,7 @@ export const useGetQuizQuestions = (quizId: string) => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://quizify-quiz-service.vercel.app/api/quiz/${quizId}`,
+          `https://quizify-quiz-service.vercel.app/api/quiz/quiz-questions/${quizId}`,
           {
             headers: {
               "Content-Type": "application/json",

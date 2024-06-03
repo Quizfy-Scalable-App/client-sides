@@ -36,7 +36,7 @@ export default function CreateQuizQuestions({
         </Dialog>
       </div>
       <div className="py-6">
-        {quiz.questions.map((soal: any, index: number) => (
+        {quiz?.questions?.map((soal: any, index: number) => (
           <QuestionBox
             key={index}
             question={soal.text}
