@@ -105,7 +105,7 @@ export default function ActivityReview({ params }: { params: { id: string } }) {
         </div>
       </div>
       <div className="mb-10 w-full">
-        {quiz?.questions.map((soal: any, i: number) => (
+        {quiz?.questions?.map((soal: any, i: number) => (
           <QuestionBox
             key={i}
             question={soal.text}
