@@ -37,7 +37,6 @@ export default function CreateQuizQuestions({
       </div>
       <div className="py-6">
         {quiz.questions?.map((soal: any, index: number) => (
-        main
           <QuestionBox
             key={index}
             question={soal.text}
