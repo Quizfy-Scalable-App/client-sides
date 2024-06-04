@@ -80,57 +80,63 @@ const RightContainer = styled.div`
 `;
 
 const MyQuizPage: React.FC = () => {
+  const { user } = useCurrentUser();
   const { quizzes, error, loading } = useGetUserQuizzes();
-  console.log(quizzes);
-  if (loading) {
-    return <p>Loading...</p>;
-  }
-  if (error) {
-    return <p>{error}</p>;
-  }
   return (
     <Container>
       <MainContent>
         <h1 className="font-bold text-[24px]">My Quiz</h1>
         <div className="border-t-2 border-2 border-neutral-950 flex-grow mt-4"></div>
-        <QuizList>
-          {quizzes.map((quiz, index) => (
-            <QuizCard key={index}>
-              <div className="flex">
-                <QuizImageBox>
-                  <img src="/folder1.svg" alt="quiz"  />
-                </QuizImageBox>
-                <QuizInfo>
-                  <div
-                    style={{
-                      fontSize: "1.5rem",
-                      fontWeight: "700",
-                      marginBottom: "1rem",
-                    }}
-                  >
-                    {quiz.title}
-                  </div>
-                  {/* <p>{quiz.question.length}</p> */}
-                  {/* availibitu time */}
-                  <p>Start Time: {new Date(quiz.startTime).toLocaleString('id-ID')}</p>
-                  <p>End Time: {new Date(quiz.endTime).toLocaleString('id-ID')}</p>
+        {user ? (
+          <QuizList>
+            {quizzes?.map((quiz, index) => (
+              <QuizCard key={index}>
+                <div className="flex">
+                  <QuizImageBox>
+                    <img src="/folder1.svg" alt="quiz" />
+                  </QuizImageBox>
+                  <QuizInfo>
+                    <div
+                      style={{
+                        fontSize: "1.5rem",
+                        fontWeight: "700",
+                        marginBottom: "1rem",
+                      }}
+                    >
+                      {quiz.title}
+                    </div>
+                    {/* <p>{quiz.question.length}</p> */}
+                    {/* availibitu time */}
+                    <p>
+                      Start Time:{" "}
+                      {new Date(quiz.startTime).toLocaleString("id-ID")}
+                    </p>
+                    <p>
+                      End Time: {new Date(quiz.endTime).toLocaleString("id-ID")}
+                    </p>
+                  </QuizInfo>
+                </div>
 
-                </QuizInfo>
-              </div>
-
-              <RightContainer>
-                <a href={`/myquiz/${quiz._id}`}>
-                  <SettingsButton>Settings</SettingsButton>
-                </a>
-              </RightContainer>
-            </QuizCard>
-          ))}
-        </QuizList>
-        <CenteredContainer>
-          <a href="/quiz/create">
-            <CreateQuizButton>Create Quiz</CreateQuizButton>
-          </a>
-        </CenteredContainer>
+                <RightContainer>
+                  <a href={`/myquiz/${quiz._id}`}>
+                    <SettingsButton>Settings</SettingsButton>
+                  </a>
+                </RightContainer>
+              </QuizCard>
+            ))}
+          </QuizList>
+        ) : (
+          <div className="flex justify-center items-center h-96">
+            <h2 className="text-2xl">Please Log In to see the My Quiz</h2>
+          </div>
+        )}
+        {user && (
+          <CenteredContainer>
+            <a href="/quiz/create">
+              <CreateQuizButton>Create Quiz</CreateQuizButton>
+            </a>
+          </CenteredContainer>
+        )}
       </MainContent>
     </Container>
   );

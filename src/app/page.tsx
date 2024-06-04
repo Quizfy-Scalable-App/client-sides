@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import Navbar from "./_components/Navbar";
 import ActivityList from "./activity/_components/ActivityList";
@@ -10,10 +10,10 @@ export default function Home() {
   const { user } = useCurrentUser();
   const router = useRouter();
   console.log(user);
-  if (localStorage.getItem("authToken") === null)  {
-    router.push("/sign-in");
-  }
-    
+  // if (localStorage.getItem("authToken") === null)  {
+  //   router.push("/sign-in");
+  // }
+
   return (
     <div>
       <InputBox />

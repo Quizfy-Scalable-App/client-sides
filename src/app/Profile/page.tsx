@@ -8,7 +8,7 @@ const ProfilePage = () => {
   const router = useRouter();
   const { user } = useCurrentUser();
   const { logout, error, loading } = useLogout();
-  if (!user) {
+  if (!user || localStorage.getItem("authToken") === null) {
     router.push("/sign-in");
   }
   return (
