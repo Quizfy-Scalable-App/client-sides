@@ -75,6 +75,15 @@ const CreateQuizPage: React.FC = () => {
   const [startTime, setStartTime] = useState("");
   const [endDate, setEndDate] = useState("");
   const [endTime, setEndTime] = useState("");
+  const { user } = useCurrentUser();
+  if (!user || localStorage.getItem("authToken") === null) {
+    router.push("/sign-in");
+    return (
+      <div className="flex justify-center items-center h-96">
+        <h2 className="text-2xl">Unauthorize Please Log In</h2>
+      </div>
+    );
+  }
 
   // Fungsi untuk menggabungkan date dan time dengan offset WIB
   const getFullDateTimeWIB = (date: string, time: string) => {
@@ -142,7 +151,7 @@ const CreateQuizPage: React.FC = () => {
                 />
               </DateTimeGroup>
             </FormGroup>
-            <CreateQuizButton type="submit" disabled={loading ? true : false}>
+            <CreateQuizButton type="submit" disabled={loading}>
               {loading ? "Loading..." : "Create Quiz"}
             </CreateQuizButton>
           </form>

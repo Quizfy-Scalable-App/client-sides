@@ -2,9 +2,11 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const { user } = useCurrentUser();
 
   return (
     <header className="bg-icha flex">
@@ -31,20 +33,22 @@ const Navbar = () => {
           >
             <Link href={"/myquiz"}>My Quiz</Link>
           </button>
-          <button
-            type="button"
-            className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-          >
-            <Link href={"/profile"}>Profile</Link>
-          </button>
+          {user && (
+            <button
+              type="button"
+              className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
+            >
+              <Link href={"/profile"}>Profile</Link>
+            </button>
+          )}
         </div>
       </div>
-      {(pathname == "/" ||
+      {user && (pathname == "/" ||
         pathname == "/home" ||
         pathname == "/activity" ||
         pathname == "/myquiz" ||
         pathname == "/quiz/create" ||
-        pathname == "/profile" ) && (
+        pathname == "/profile") && (
         <div className="w-1/2 ">
           <div className="h-full flex justify-end items-center mr-3 px-6">
             <button
@@ -56,7 +60,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      {(pathname == "/sign-in" || pathname == "/sign-up") && (
+      {(pathname == "/sign-in" || pathname == "/sign-up" || (!user)) && (
         <div className="w-1/2 ">
           <div className="h-full flex justify-end items-center mr-3 px-6 gap-8">
             <button
