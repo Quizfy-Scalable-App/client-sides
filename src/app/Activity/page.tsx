@@ -1,6 +1,6 @@
+"use client";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 import ActivityList from "./_components/ActivityList";
-
-
 
 export default function Activity() {
   return (

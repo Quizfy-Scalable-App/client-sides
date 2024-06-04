@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { QuestionBox } from "@/components/ui/questionbox";
 import { useGetQuizQuestions } from "@/hooks/quiz/useGetQuizQuestions";
 import useSubmitQuiz from "@/hooks/quiz/useSubmitQuiz";
+import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
+import { useRouter } from "next/navigation";
 
 export default function JoinQuiz({ params }: { params: { id: string } }) {
+  const router = useRouter();
   const { quiz, error, loading } = useGetQuizQuestions(params.id);
   const {
     submitQuiz,
@@ -15,6 +18,15 @@ export default function JoinQuiz({ params }: { params: { id: string } }) {
   const [answers, setAnswers] = useState<
     { questionId: string; choiceId: string }[]
   >([]);
+  const { user } = useCurrentUser();
+  if (!user || localStorage.getItem("authToken") === null) {
+    router.push("/sign-in");
+    return (
+      <div className="flex justify-center items-center h-96">
+        <h2 className="text-2xl">Unauthorize Please Log In</h2>
+      </div>
+    );
+  }
   if (!quiz) {
     return <p>Loading...</p>;
   }
