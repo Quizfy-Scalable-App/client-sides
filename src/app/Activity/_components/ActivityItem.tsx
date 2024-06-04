@@ -10,7 +10,7 @@ function ActivityItem({ activity }: any) {
         gap-1 hover:scale-105 hover:shadow-md cursor-pointer relative"
     >
       <div>
-        <Link href="Activity/1" className="">
+        <Link href={`activity/${activity.answerId}`}className="">
           <Image
             className="w-"
             src="/folder1.svg"

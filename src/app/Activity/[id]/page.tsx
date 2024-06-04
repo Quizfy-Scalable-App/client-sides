@@ -15,31 +15,6 @@ import { useGetQuizQuestions } from "@/hooks/quiz/useGetQuizQuestions";
 import { useGetRank } from "@/hooks/scoring/useGetQuizRank";
 import { useGetScore } from "@/hooks/scoring/useGetScore";
 
-// const rank = [
-//   {
-//     nama: "Icha",
-//     score: 100,
-//     Rank: 1,
-//   },
-//   {
-//     nama: "Aji",
-//     score: 99,
-//     Rank: 2,
-//   },
-//   {
-//     nama: "Nico",
-//     score: 100,
-//     Rank: 3,
-//   },
-//   {
-//     nama: "Reta",
-//     score: 97,
-//     Rank: 4,
-//   },
-// ];
-
-// const rankuser = rank.pop();
-
 export default function ActivityReview({ params }: { params: { id: string } }) {
   const { answers, error, loading } = useGetQuizAnswers(params.id);
   const {
