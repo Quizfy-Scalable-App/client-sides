@@ -1,8 +1,10 @@
 "use client";
+import { QuestionBox } from "@/components/ui/questionbox";
 import { useGetQuizQuestions } from "@/hooks/quiz/useGetQuizQuestions";
 import { useGetRank } from "@/hooks/scoring/useGetQuizRank";
 import React, { useState } from "react";
 import styled from "styled-components";
+
 
 const Container = styled.div`
   font-family: Arial, sans-serif;
@@ -140,7 +142,7 @@ const MyQuizPage = ({ params }: { params: { id: string } }) => {
           </InviteSection>
         </CenteredContainer>
         <div
-          style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem" }}
+          style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "1rem" }}
         >
           Rank
         </div>
@@ -167,6 +169,17 @@ const MyQuizPage = ({ params }: { params: { id: string } }) => {
             )}
           </tbody>
         </RankTable>
+        <div className="py-6">
+        {quiz?.questions?.map((soal: any, index: number) => (
+          <QuestionBox
+            key={index}
+            question={soal.text}
+            answers={soal.choices}
+            index={index}
+            isCreate={true}
+          />
+        ))}
+      </div>
       </MainContent>
     </Container>
   );
