@@ -4,6 +4,7 @@ import { useGetRank } from "@/hooks/scoring/useGetQuizRank";
 import React, { useState } from "react";
 import styled from "styled-components";
 
+
 const Container = styled.div`
   font-family: Arial, sans-serif;
 `;
@@ -140,7 +141,7 @@ const MyQuizPage = ({ params }: { params: { id: string } }) => {
           </InviteSection>
         </CenteredContainer>
         <div
-          style={{ fontSize: "2rem", fontWeight: "700", marginBottom: "1rem" }}
+          style={{ fontSize: "1.5rem", fontWeight: "700", marginBottom: "1rem" }}
         >
           Rank
         </div>
