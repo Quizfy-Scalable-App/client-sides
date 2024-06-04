@@ -4,26 +4,24 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <header className="bg-icha flex " >
-      <div className="flex w-1/2 h-16 align-middle" style={{fontFamily: 'Inter'}}>
+    <header className="bg-icha flex ">
+      <div
+        className="flex w-1/2 h-16 align-middle"
+        style={{ fontFamily: "Inter" }}
+      >
         <div className="w-full ml-3 flex justify-between items-center px-6">
-          <Link
-            href="/"
-            className=" text-3xl font-bold text-icha2"
-          >
+          <Link href="/" className=" text-3xl font-bold text-icha2">
             Quizify
           </Link>
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            data-dropdown-toggle="dropdown"
           >
             Home
           </button>
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            style={{ fontFamily: "Inter" }}
           >
             <Link href={"/Activity"}>Activity</Link>
           </button>

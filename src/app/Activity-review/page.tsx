@@ -161,7 +161,7 @@ export default function ActivityReview() {
               answers={soal.answers}
               isDisabled={true}
               index={i}
-              className="mb-4"
+
             />
           ))}
         </div>
