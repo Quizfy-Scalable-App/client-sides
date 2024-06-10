@@ -9,7 +9,7 @@ const Navbar = () => {
   const { user } = useCurrentUser();
 
   return (
-    <header className="bg-icha flex">
+    <header className="bg-icha flex fixed w-full">
       <div className="flex w-1/2 h-16 align-middle">
         <div className="w-full ml-3 flex justify-between items-center px-6">
           <Link href="/" className=" text-3xl font-bold text-icha2">
@@ -18,7 +18,6 @@ const Navbar = () => {
           <button
             type="button"
             className="inline-flex px-7 py-2 text-[16px] text-sm font-bold text-white"
-            data-dropdown-toggle="dropdown"
           >
             <Link href={"/"}>Home</Link>
           </button>

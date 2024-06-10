@@ -17,7 +17,7 @@ export default function CreateQuizQuestions({
   const router = useRouter();
   const { quiz, error, loading } = useGetQuizQuestions(params.id);
   const { user } = useCurrentUser();
-  if (!user || localStorage.getItem("authToken") === null) {
+  if (localStorage.getItem("authToken") === null) {
     router.push("/sign-in");
     return (
       <div className="flex justify-center items-center h-96">
