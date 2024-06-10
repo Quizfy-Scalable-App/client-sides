@@ -12,7 +12,7 @@ export const useGetUserQuizActivity = () => {
       try {
         const token = localStorage.getItem("authToken");
         const response = await fetch(
-          `https://quizify-scoring-service.vercel.app/api/score/user`,
+          `http://localhost:8002/api/score/user`,
           {
             headers: {
               "Content-Type": "application/json",

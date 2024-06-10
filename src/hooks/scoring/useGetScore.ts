@@ -13,7 +13,7 @@ export const useGetScore = (scoreId: string) => {
       console.log(scoreId);
       try {
         const response = await fetch(
-          `https://quizify-scoring-service.vercel.app/api/score/answer/${scoreId}`,
+          `http://localhost:8002/api/score/answer/${scoreId}`,
           {
             headers: {
               "Content-Type": "application/json",

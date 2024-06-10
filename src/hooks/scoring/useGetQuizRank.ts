@@ -13,7 +13,7 @@ export const useGetRank = (quizId: string) => {
       console.log(quizId);
       try {
         const response = await fetch(
-          `https://quizify-scoring-service.vercel.app/api/score/ranking/${quizId}`,
+          `http://localhost:8002/api/score/ranking/${quizId}`,
           {
             headers: {
               "Content-Type": "application/json",

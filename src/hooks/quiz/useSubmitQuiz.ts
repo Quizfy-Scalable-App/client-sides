@@ -74,7 +74,7 @@ const useSubmitQuiz = () => {
     try {
       // Submit quiz answers
       const res = await fetch(
-        `https://quizify-quiz-service.vercel.app/api/quiz/${quizId}/answer`,
+        `http://localhost:8001/api/quiz/${quizId}/answer`,
         {
           method: "POST",
           headers: {
@@ -95,7 +95,7 @@ const useSubmitQuiz = () => {
       console.log(result);
 
       // Call grading service
-      const gradeRes = await fetch(`https://quizify-scoring-service.vercel.app/api/score/grade`, {
+      const gradeRes = await fetch(`http://localhost:8002/api/score/grade`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -106,6 +106,8 @@ const useSubmitQuiz = () => {
           userId: result.user, // Assuming result contains userId
         }),
       });
+
+      console.log(gradeRes);
 
       if (!gradeRes.ok) {
         throw new Error("Failed to grade quiz");

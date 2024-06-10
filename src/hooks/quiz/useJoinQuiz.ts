@@ -15,7 +15,7 @@ const useJoinQuiz = () => {
     try {
       // Mengambil kuis berdasarkan kode
       const quizResponse = await fetch(
-        `https://quizify-quiz-service.vercel.app/api/quiz/code/${code}`
+        `http://localhost:8001/api/quiz/code/${code}`
       );
       if (!quizResponse.ok) {
         throw new Error("Quiz not found");
