@@ -10,7 +10,7 @@ export const useSignUp = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8002/api/auth/register",
+        "http://localhost:8000/api/auth/register",
         {
           method: "POST",
           headers: {

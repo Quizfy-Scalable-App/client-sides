@@ -10,7 +10,7 @@ export const useLogin = () => {
     setLoading(true);
     try {
       const response = await fetch(
-        "http://localhost:8002/api/auth/login",
+        "http://localhost:8000/api/auth/login",
         {
           method: "POST",
           headers: {
