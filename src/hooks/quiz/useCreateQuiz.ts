@@ -15,7 +15,7 @@ export const useCreateQuiz = () => {
       }
 
       const response = await fetch(
-        "https://quizify-quiz-service.vercel.app/api/quiz/create",
+        "http://localhost:8001/api/quiz/create",
         {
           method: "POST",
           headers: {

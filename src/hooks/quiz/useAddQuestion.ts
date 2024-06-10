@@ -20,7 +20,7 @@ export const useAddQuestion = () => {
       }
 
       const response = await fetch(
-        `https://quizify-quiz-service.vercel.app/api/quiz/${quizId}/question`,
+        `http://localhost:8001/api/quiz/${quizId}/question`,
         {
           method: "POST",
           headers: {
