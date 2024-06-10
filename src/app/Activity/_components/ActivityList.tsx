@@ -7,7 +7,7 @@ import { useCurrentUser } from "@/hooks/auth/useCurrentUser";
 function ActivityList() {
   const { user } = useCurrentUser();
   const { userQuizActivity, error, loading } = useGetUserQuizActivity();
-  if (!user || localStorage.getItem("authToken") === null){
+  if (localStorage.getItem("authToken") === null){
     return (
       <div className="flex justify-center items-center h-96">
         <h2 className="text-2xl">Please Log In to see the newest activity</h2>
